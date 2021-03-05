@@ -1,4 +1,4 @@
 package com.example.cheatAdmin.domain;
 
-public class Content {
+public class ProductRepository {
 }
