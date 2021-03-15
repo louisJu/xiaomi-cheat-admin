@@ -19,39 +19,40 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/products")
 public class ProductController {
     private ProductService productService;
-    //상품 등록
-    //상품 조회(리스트, 특정상품)
-    //상품 수정
-    //상품 삭제
 
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
+    //상품 등록
     @PostMapping
     public ResponseEntity createProduct(@RequestBody ProductRequest productRequest) {
         ProductResponse productResponse = productService.createProduct(productRequest);
         return ResponseEntity.created(URI.create("/products/" + productResponse.getId())).build();
     }
 
+    //상품 조회(특정상품)
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> findProductOne(@PathVariable Long id) {
         ProductResponse productResponse = productService.findProductOne(id);
         return ResponseEntity.ok().body(productResponse);
     }
 
+    //상품 조회(리스트)
     @GetMapping("/all")
     public ResponseEntity<List<ProductResponse>> findProductAll() {
         List<ProductResponse> productResponse = productService.findProduct();
         return ResponseEntity.ok().body(productResponse);
     }
 
+    //상품 수정
     @PutMapping("/{id}")
     public ResponseEntity updateProduct(@PathVariable Long id, @RequestBody ProductRequest productRequest) {
-        productService.updateProduct(id);
+        productService.updateProduct(id, productRequest);
         return ResponseEntity.ok().build();
     }
 
+    //상품 삭제
     @DeleteMapping("/{id}")
     public ResponseEntity deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);

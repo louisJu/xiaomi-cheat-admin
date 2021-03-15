@@ -38,6 +38,24 @@ public class Product {
         this.price = price;
     }
 
+    public void changeProduct(Category category, Brand brand, String name, String code, BigDecimal price) {
+        if(this.category.getId() != category.getId()) {
+            this.category = category;
+        }
+        if(this.brand.getId() != brand.getId()) {
+            this.brand = brand;
+        }
+        if(!(this.name.equals(name))) {
+            this.name = name;
+        }
+        if(!(this.code.equals(code))) {
+            this.code = code;
+        }
+        if(!(this.price != price)) {
+            this.price = price;
+        }
+    }
+
     public Long getId() {
         return id;
     }
@@ -61,4 +79,5 @@ public class Product {
     public BigDecimal getPrice() {
         return price;
     }
+
 }
