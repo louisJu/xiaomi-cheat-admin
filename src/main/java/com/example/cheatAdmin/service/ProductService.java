@@ -76,6 +76,10 @@ public class ProductService {
     public void deleteProduct(Long id) {
         //TODO
         // 추후에 진행
+        final Product product = productRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("상품 정보를 찾을 수 없습니다."));
+
+
         //final Product product = productRepository.findById(id).orElseThrow();
         // id를 이용해서 조회한다.
         // 삭제플래그만 바꾼다.
